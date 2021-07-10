@@ -1,0 +1,7 @@
+
+xmonad.hs:297:40: error:
+    • Variable not in scope: xmobarProc :: GHC.IO.Handle.Types.Handle
+    • Perhaps you meant ‘xmobarPP’ (imported from XMonad.Hooks.DynamicLog)
+    |
+297 |         logHook            = myLogHook xmobarProc,
+    |                                        ^^^^^^^^^^

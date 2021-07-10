@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Hidden=false
+Exec=/opt/minergate/minergate --auto
+Name=Minergate
+Terminal=false
