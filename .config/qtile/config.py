@@ -30,6 +30,7 @@ import re
 import socket
 import subprocess
 from libqtile import qtile
+from libqtile import images
 from libqtile.config import Click, Drag, Group, KeyChord, Key, Match, Screen
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
@@ -187,7 +188,6 @@ screens = [
             [
                #    Spacer For using with Termux and Xserver SDL
                #  widget.Spacer(length=50),
-               
                 widget.TextBox(
                     text = "  ",
                     fontsize=32,
@@ -234,7 +234,51 @@ screens = [
                         foreground = widget_light_foreground
                     ),
                 
-            
+                
+                widget.TextBox(
+                      text = "",
+                      fontsize=21,
+                       padding = 0,
+                       foreground = widget_dark_background,
+                       background = widget_light_background
+                       ),
+                
+                widget.TextBox(
+                    text="",
+                    fontsize = "22",
+                    background = widget_dark_background
+                    ),
+                widget.GenPollText(
+                    update_interval=1, 
+                    func=lambda: subprocess.check_output("/home/weak/.config/qtile/scripts/hddusage.sh").decode("utf-8"),
+                    background=widget_dark_background,
+                    ),
+                widget.TextBox(
+                      text = "",
+                      fontsize=21,
+                       padding = 0,
+                       foreground = widget_light_background,
+                       background = widget_dark_background
+                       ),
+
+                widget.TextBox(
+                      text = "  ",
+                      font = "FontAwesome",
+                       padding = 0,
+                       background = widget_light_background,
+                       foreground = widget_light_foreground,
+                       ),
+                widget.CheckUpdates(
+                        update_interval = 1800,
+                        distro = "Arch_checkupdates",
+                        display_format = "{updates} aktualizací ",
+                        background = widget_light_background,
+                        colour_have_updates = widget_light_foreground,
+                        colour_no_updates = widget_light_foreground,
+                        mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("alacritty -e sudo pacman -Syyu")},
+                        no_update_string = "žádne aktualizace"
+
+                    ),
                 widget.TextBox(
                       text = "",
                       fontsize=21,
@@ -327,6 +371,7 @@ floating_layout = layout.Floating(float_rules=[
     *layout.Floating.default_float_rules,
     Match(wm_class='oblogout'),
     Match(wm_class='galculator'),
+    Match(wm_class='gnome-calculator'),
     Match(wm_class='pavucontrol'),
     Match(wm_class='confirmreset'),  # gitk
     Match(wm_class='makebranch'),  # gitk

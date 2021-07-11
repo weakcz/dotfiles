@@ -5,7 +5,7 @@ xsetroot -cursor_name left_ptr &
 setxkbmap cz &
 
 # Spustíme kompozitor (umožňuje grafické efekty jako je průhlednost, stíny a tak dále)
-picom &
+picom --experimental-backends --backend glx &
 
 # Polkit (abysme mohli zadávat hesla)
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
